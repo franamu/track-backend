@@ -9,6 +9,9 @@ const requireAuth = require('./middlewares/requireAuth');
 
 // usar ngrok http 3000
 
+// port heroku
+const port = process.env.PORT || 3000;
+
 const app = express();
 app.use(bodyParser.json());
 app.use(authRoutes);
@@ -33,6 +36,6 @@ app.get('/', requireAuth, (req, res) => {
     res.send(`Tu email es: ${req.user.email}`);
 });
 
-app.listen(3000, () => {
-    console.log('escuchando puerto 3000');
+app.listen(port, () => {
+    console.log(`Escuchando puerto ${port}`);
 });
